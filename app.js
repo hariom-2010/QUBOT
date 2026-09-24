@@ -1,13 +1,3 @@
-/* =========================================
-   QUBOT
-   Frontend Controller
-   ========================================= */
-
-
-/* =========================================
-   ELEMENTS
-   ========================================= */
-
 const introScreen =
     document.getElementById("introScreen");
 
@@ -48,13 +38,7 @@ const sendButton =
     document.getElementById("sendButton");
 
 
-/* =========================================
-   STATE
-   ========================================= */
-
 let chatMessages = [];
-
-let chatStarted = false;
 
 
 /* =========================================
@@ -71,7 +55,7 @@ enterButton.addEventListener(
             "scale(1.03)";
 
         introScreen.style.transition =
-            "opacity 0.5s ease, transform 0.5s ease";
+            "opacity .5s ease, transform .5s ease";
 
 
         setTimeout(() => {
@@ -92,7 +76,7 @@ enterButton.addEventListener(
 
 
 /* =========================================
-   SEND MESSAGE
+   SEND
    ========================================= */
 
 chatForm.addEventListener(
@@ -119,152 +103,91 @@ chatForm.addEventListener(
         autoResize();
 
 
-        await sendToQubot();
+        /*
+         * Temporary GitHub Pages demo.
+         *
+         * Real Gemini backend will be
+         * connected after deployment.
+         */
+
+        setLoading(true);
+
+
+        setTimeout(() => {
+
+            addAssistantMessage(
+                "Hello! I'm QUBOT. ⚛️\n\n" +
+                "Your message was received.\n\n" +
+                "The real Gemini AI connection " +
+                "will be connected to QUBOT's " +
+                "backend in the next step."
+            );
+
+
+            setLoading(false);
+
+        }, 700);
 
     }
 );
 
 
 /* =========================================
-   SEND TO FASTAPI
-   ========================================= */
-
-async function sendToQubot() {
-
-    setLoading(true);
-
-
-    try {
-
-        const response =
-            await fetch(
-                "/api/chat",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        messages:
-                            chatMessages
-                    })
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "QUBOT server error"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        const reply =
-            data.reply ||
-            "QUBOT did not return a response.";
-
-
-        addAssistantMessage(
-            reply
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "QUBOT error:",
-            error
-        );
-
-
-        addAssistantMessage(
-            "⚠️ QUBOT is unable to connect to the backend right now.\n\nPlease check the server connection."
-        );
-
-
-    } finally {
-
-        setLoading(false);
-
-    }
-
-}
-
-
-/* =========================================
-   ADD USER MESSAGE
+   USER MESSAGE
    ========================================= */
 
 function addUserMessage(text) {
 
-    chatStarted = true;
-
-
-    const message = {
+    chatMessages.push({
 
         role: "user",
 
-        content: text,
+        content: text
 
-        time: new Date()
-
-    };
-
-
-    chatMessages.push(message);
+    });
 
 
     welcomeMessage.style.display =
         "none";
 
 
-    const messageElement =
+    const element =
         document.createElement("div");
 
 
-    messageElement.className =
+    element.className =
         "message-row";
 
 
-    messageElement.innerHTML = `
+    element.innerHTML = `
 
         <div
             style="
-                display: flex;
-                justify-content: flex-end;
-                width: 100%;
-                margin-bottom: 20px;
+                display:flex;
+                justify-content:flex-end;
+                width:100%;
+                margin-bottom:20px;
             "
         >
 
             <div
                 style="
-                    max-width: 80%;
-                    padding: 13px 17px;
-                    border-radius: 17px;
+                    max-width:80%;
+                    padding:13px 17px;
+                    border-radius:17px;
                     background:
                         linear-gradient(
                             135deg,
-                            rgba(0, 229, 255, 0.10),
-                            rgba(56, 107, 255, 0.10)
+                            rgba(0,229,255,.10),
+                            rgba(56,107,255,.10)
                         );
                     border:
                         1px solid
-                        rgba(0, 229, 255, 0.15);
-                    color: #edf4ff;
-                    font-size: 0.9rem;
-                    line-height: 1.6;
-                    white-space: pre-wrap;
-                    word-break: break-word;
+                        rgba(0,229,255,.15);
+                    color:#edf4ff;
+                    line-height:1.6;
+                    white-space:pre-wrap;
+                    word-break:break-word;
                 "
             >
                 ${escapeHtml(text)}
@@ -275,84 +198,63 @@ function addUserMessage(text) {
     `;
 
 
-    messages.appendChild(
-        messageElement
-    );
+    messages.appendChild(element);
 
+    updateConversation();
 
     scrollToBottom();
-
-    updateConversationList();
 
 }
 
 
 /* =========================================
-   ADD ASSISTANT MESSAGE
+   AI MESSAGE
    ========================================= */
 
-function addAssistantMessage(
-    text
-) {
+function addAssistantMessage(text) {
 
-    const message = {
+    chatMessages.push({
 
         role: "assistant",
 
-        content: text,
+        content: text
 
-        time: new Date()
-
-    };
+    });
 
 
-    chatMessages.push(message);
-
-
-    const messageElement =
+    const element =
         document.createElement("div");
 
 
-    messageElement.className =
+    element.className =
         "message-row";
 
 
-    messageElement.innerHTML = `
+    element.innerHTML = `
 
         <div
             style="
-                display: flex;
-                gap: 14px;
-                width: 100%;
-                margin-bottom: 24px;
+                display:flex;
+                gap:14px;
+                width:100%;
+                margin-bottom:24px;
             "
         >
 
             <div
                 style="
-                    width: 38px;
-                    height: 38px;
-                    flex-shrink: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 11px;
-                    background:
-                        rgba(0, 229, 255, 0.08);
-                    border:
-                        1px solid
-                        rgba(0, 229, 255, 0.25);
-                    color: #00e5ff;
-                    overflow: hidden;
+                    width:38px;
+                    height:38px;
+                    flex-shrink:0;
                 "
             >
 
                 <img
-                    src="/assets/logo.svg"
+                    src="assets/logo.svg"
                     alt="QUBOT"
                     style="
-                        width: 30px;
-                        height: 30px;
+                        width:38px;
+                        height:38px;
                     "
                 >
 
@@ -361,13 +263,12 @@ function addAssistantMessage(
 
             <div
                 style="
-                    flex: 1;
-                    max-width: 800px;
-                    color: #dce5f4;
-                    font-size: 0.9rem;
-                    line-height: 1.7;
-                    white-space: pre-wrap;
-                    word-break: break-word;
+                    flex:1;
+                    max-width:800px;
+                    color:#dce5f4;
+                    line-height:1.7;
+                    white-space:pre-wrap;
+                    word-break:break-word;
                 "
             >
                 ${escapeHtml(text)}
@@ -378,79 +279,9 @@ function addAssistantMessage(
     `;
 
 
-    messages.appendChild(
-        messageElement
-    );
-
+    messages.appendChild(element);
 
     scrollToBottom();
-
-}
-
-
-/* =========================================
-   LOADING STATE
-   ========================================= */
-
-function setLoading(
-    loading
-) {
-
-    sendButton.disabled =
-        loading;
-
-
-    messageInput.disabled =
-        loading;
-
-
-    if (loading) {
-
-        sendButton.textContent =
-            "⋯";
-
-    } else {
-
-        sendButton.textContent =
-            "↑";
-
-        messageInput.focus();
-
-    }
-
-}
-
-
-/* =========================================
-   ESCAPE HTML
-   ========================================= */
-
-function escapeHtml(text) {
-
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        text;
-
-    return div.innerHTML;
-
-}
-
-
-/* =========================================
-   SCROLL
-   ========================================= */
-
-function scrollToBottom() {
-
-    messages.scrollTo({
-
-        top: messages.scrollHeight,
-
-        behavior: "smooth"
-
-    });
 
 }
 
@@ -465,18 +296,14 @@ newChatButton.addEventListener(
 
         chatMessages = [];
 
-        chatStarted = false;
 
-
-        const messageRows =
-            messages.querySelectorAll(
+        messages
+            .querySelectorAll(
                 ".message-row"
+            )
+            .forEach(
+                row => row.remove()
             );
-
-
-        messageRows.forEach(
-            (row) => row.remove()
-        );
 
 
         welcomeMessage.style.display =
@@ -493,93 +320,8 @@ newChatButton.addEventListener(
 
         messageInput.focus();
 
-
-        closeMobileSidebar();
-
     }
 );
-
-
-/* =========================================
-   CONVERSATION LIST
-   ========================================= */
-
-function updateConversationList() {
-
-    conversationList.innerHTML =
-        "";
-
-
-    const firstMessage =
-        chatMessages.find(
-            (message) =>
-                message.role === "user"
-        );
-
-
-    if (!firstMessage) {
-        return;
-    }
-
-
-    const conversation =
-        document.createElement("div");
-
-
-    conversation.style.cssText = `
-
-        padding: 10px 12px;
-
-        border-radius: 9px;
-
-        color: #aab4c5;
-
-        font-size: 0.72rem;
-
-        cursor: pointer;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-        transition: 0.2s;
-
-    `;
-
-
-    conversation.textContent =
-        firstMessage.content;
-
-
-    conversation.addEventListener(
-        "mouseenter",
-        () => {
-
-            conversation.style.background =
-                "rgba(255,255,255,0.04)";
-
-        }
-    );
-
-
-    conversation.addEventListener(
-        "mouseleave",
-        () => {
-
-            conversation.style.background =
-                "transparent";
-
-        }
-    );
-
-
-    conversationList.appendChild(
-        conversation
-    );
-
-}
 
 
 /* =========================================
@@ -587,7 +329,7 @@ function updateConversationList() {
    ========================================= */
 
 suggestionButtons.forEach(
-    (button) => {
+    button => {
 
         button.addEventListener(
             "click",
@@ -605,13 +347,13 @@ suggestionButtons.forEach(
                         "Explain quantum physics in simple terms.",
 
                     "Write some code":
-                        "Write a simple Python program and explain how it works.",
+                        "Write a simple Python program and explain it.",
 
                     "Brainstorm ideas":
-                        "Give me 10 creative ideas for a technology project.",
+                        "Give me 10 creative technology project ideas.",
 
                     "Teach me":
-                        "Teach me something fascinating that I probably don't know."
+                        "Teach me something fascinating."
 
                 };
 
@@ -633,7 +375,7 @@ suggestionButtons.forEach(
 
 
 /* =========================================
-   TEXTAREA AUTO RESIZE
+   TEXTAREA
    ========================================= */
 
 messageInput.addEventListener(
@@ -663,7 +405,7 @@ function autoResize() {
 
 messageInput.addEventListener(
     "keydown",
-    (event) => {
+    event => {
 
         if (
             event.key === "Enter" &&
@@ -681,7 +423,7 @@ messageInput.addEventListener(
 
 
 /* =========================================
-   MOBILE SIDEBAR
+   MOBILE MENU
    ========================================= */
 
 mobileMenuButton.addEventListener(
@@ -696,19 +438,109 @@ mobileMenuButton.addEventListener(
 );
 
 
-function closeMobileSidebar() {
+/* =========================================
+   CONVERSATION
+   ========================================= */
 
-    sidebar.classList.remove(
-        "open"
-    );
+function updateConversation() {
+
+    conversationList.innerHTML = "";
+
+
+    const first =
+        chatMessages.find(
+            message =>
+                message.role === "user"
+        );
+
+
+    if (!first) {
+        return;
+    }
+
+
+    const item =
+        document.createElement("div");
+
+
+    item.style.cssText = `
+
+        padding:10px 12px;
+        border-radius:9px;
+        color:#aab4c5;
+        font-size:.72rem;
+        cursor:pointer;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+
+    `;
+
+
+    item.textContent =
+        first.content;
+
+
+    conversationList.appendChild(item);
 
 }
 
 
 /* =========================================
-   INITIALIZE
+   LOADING
    ========================================= */
 
+function setLoading(loading) {
+
+    sendButton.disabled =
+        loading;
+
+
+    messageInput.disabled =
+        loading;
+
+
+    sendButton.textContent =
+        loading
+            ? "⋯"
+            : "↑";
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+   ========================================= */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================
+   SCROLL
+   ========================================= */
+
+function scrollToBottom() {
+
+    messages.scrollTo({
+
+        top: messages.scrollHeight,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
 console.log(
-    "QUBOT frontend initialized ⚛️"
+    "QUBOT loaded successfully ⚛️"
 );
