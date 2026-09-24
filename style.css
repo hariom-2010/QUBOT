@@ -1,0 +1,1421 @@
+/* =========================================
+   QUBOT
+   Quantum AI Assistant
+   ========================================= */
+
+
+/* =========================================
+   GLOBAL
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #05070d;
+    --bg-light: #0a0f1c;
+
+    --panel: rgba(10, 15, 28, 0.88);
+
+    --border: rgba(120, 150, 190, 0.15);
+
+    --text: #f5f7ff;
+    --muted: #8b95a7;
+
+    --cyan: #00e5ff;
+    --blue: #386bff;
+    --purple: #8b5cf6;
+
+    --glow:
+        0 0 20px rgba(0, 229, 255, 0.25),
+        0 0 50px rgba(56, 107, 255, 0.15);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   SCREEN
+   ========================================= */
+
+.screen {
+    width: 100%;
+    height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(56, 107, 255, 0.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 30% 70%,
+            rgba(139, 92, 246, 0.08),
+            transparent 30%
+        ),
+        #05070d;
+}
+
+
+/* =========================================
+   QUANTUM BACKGROUND
+   ========================================= */
+
+.quantum-bg {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.quantum-bg::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 229, 255, 0.07),
+            transparent 65%
+        );
+
+    filter: blur(10px);
+}
+
+
+/* Particles */
+
+.quantum-bg span {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 20px rgba(0, 229, 255, 0.5);
+
+    animation: particleFloat 8s infinite ease-in-out;
+}
+
+.quantum-bg span:nth-child(1) {
+    left: 12%;
+    top: 25%;
+    animation-delay: 0s;
+}
+
+.quantum-bg span:nth-child(2) {
+    left: 82%;
+    top: 20%;
+    animation-delay: 1s;
+}
+
+.quantum-bg span:nth-child(3) {
+    left: 25%;
+    top: 75%;
+    animation-delay: 2s;
+}
+
+.quantum-bg span:nth-child(4) {
+    left: 75%;
+    top: 70%;
+    animation-delay: 3s;
+}
+
+.quantum-bg span:nth-child(5) {
+    left: 50%;
+    top: 12%;
+    animation-delay: 4s;
+}
+
+.quantum-bg span:nth-child(6) {
+    left: 90%;
+    top: 50%;
+    animation-delay: 5s;
+}
+
+
+@keyframes particleFloat {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translate(
+            20px,
+            -30px
+        );
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   QUANTUM LOGO
+   ========================================= */
+
+.quantum-logo {
+    position: relative;
+
+    width: 170px;
+    height: 170px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+
+
+.quantum-core {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 42px;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0%,
+            #00e5ff 35%,
+            #386bff 70%,
+            #151a36 100%
+        );
+
+    box-shadow:
+        0 0 20px #00e5ff,
+        0 0 60px rgba(0, 229, 255, 0.5),
+        0 0 100px rgba(56, 107, 255, 0.3);
+
+    z-index: 5;
+
+    animation: corePulse 3s infinite ease-in-out;
+}
+
+
+@keyframes corePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+
+/* Orbit */
+
+.orbital {
+    position: absolute;
+
+    width: 155px;
+    height: 55px;
+
+    border: 1px solid rgba(
+        0,
+        229,
+        255,
+        0.7
+    );
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 15px rgba(
+            0,
+            229,
+            255,
+            0.2
+        );
+}
+
+
+.orbital-one {
+    transform: rotate(25deg);
+
+    animation:
+        orbitOne 5s
+        linear infinite;
+}
+
+
+.orbital-two {
+    transform: rotate(-25deg);
+
+    border-color:
+        rgba(139, 92, 246, 0.65);
+
+    animation:
+        orbitTwo 6s
+        linear infinite;
+}
+
+
+.orbital-three {
+    transform: rotate(90deg);
+
+    border-color:
+        rgba(56, 107, 255, 0.65);
+
+    animation:
+        orbitThree 7s
+        linear infinite;
+}
+
+
+@keyframes orbitOne {
+
+    from {
+        transform:
+            rotate(25deg);
+    }
+
+    to {
+        transform:
+            rotate(385deg);
+    }
+}
+
+
+@keyframes orbitTwo {
+
+    from {
+        transform:
+            rotate(-25deg);
+    }
+
+    to {
+        transform:
+            rotate(-385deg);
+    }
+}
+
+
+@keyframes orbitThree {
+
+    from {
+        transform:
+            rotate(90deg);
+    }
+
+    to {
+        transform:
+            rotate(450deg);
+    }
+}
+
+
+/* =========================================
+   QUBOT TITLE
+   ========================================= */
+
+.qubot-title {
+    position: relative;
+
+    font-size:
+        clamp(
+            3.5rem,
+            9vw,
+            7rem
+        );
+
+    font-weight: 800;
+
+    letter-spacing:
+        0.18em;
+
+    margin-left: 0.18em;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #00e5ff,
+            #8b5cf6,
+            #ffffff
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        titleGradient 6s
+        linear infinite;
+
+    text-shadow:
+        0 0 40px
+        rgba(0, 229, 255, 0.15);
+}
+
+
+@keyframes titleGradient {
+
+    0% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 100% center;
+    }
+
+    100% {
+        background-position: 0% center;
+    }
+}
+
+
+.qubot-subtitle {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 0.75rem;
+
+    letter-spacing:
+        0.45em;
+
+    margin-left: 0.45em;
+}
+
+
+/* =========================================
+   DEVELOPERS
+   ========================================= */
+
+.developers {
+    margin-top: 35px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.developers p {
+    font-size: 0.75rem;
+
+    color: #687386;
+
+    letter-spacing:
+        0.12em;
+}
+
+
+.developers span {
+    margin-right: 7px;
+
+    color: #596477;
+}
+
+
+.developers strong {
+    color: #dce5f4;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   ENTER BUTTON
+   ========================================= */
+
+.enter-button {
+    position: relative;
+
+    margin-top: 35px;
+
+    padding: 14px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    border: 1px solid
+        rgba(0, 229, 255, 0.45);
+
+    border-radius: 999px;
+
+    color: white;
+
+    background:
+        rgba(0, 229, 255, 0.06);
+
+    cursor: pointer;
+
+    font-size: 0.78rem;
+
+    letter-spacing:
+        0.2em;
+
+    transition:
+        0.3s ease;
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 229, 255, 0.08);
+}
+
+
+.enter-button:hover {
+
+    background:
+        rgba(0, 229, 255, 0.12);
+
+    border-color:
+        var(--cyan);
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 229, 255, 0.3);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.enter-button .arrow {
+
+    font-size: 1.2rem;
+
+    color: var(--cyan);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.enter-button:hover .arrow {
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================
+   CHAT SCREEN
+   ========================================= */
+
+.chat-screen {
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    background: var(--bg);
+}
+
+
+.chat-screen.hidden {
+    display: none;
+}
+
+
+/* =========================================
+   SIDEBAR
+   ========================================= */
+
+.sidebar {
+
+    width: 270px;
+
+    height: 100vh;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 20px;
+
+    background:
+        rgba(7, 10, 18, 0.95);
+
+    border-right:
+        1px solid var(--border);
+}
+
+
+.sidebar-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+
+.mini-logo {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: var(--cyan);
+
+    background:
+        rgba(0, 229, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(0, 229, 255, 0.25);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 229, 255, 0.08);
+
+    font-size: 23px;
+}
+
+
+.sidebar-logo h2 {
+
+    font-size: 1.1rem;
+
+    letter-spacing:
+        0.12em;
+}
+
+
+.sidebar-logo p {
+
+    color: var(--muted);
+
+    font-size: 0.68rem;
+
+    margin-top: 2px;
+}
+
+
+/* New chat */
+
+.new-chat-button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    color: #e8edf7;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.new-chat-button:hover {
+
+    background:
+        rgba(0, 229, 255, 0.06);
+
+    border-color:
+        rgba(0, 229, 255, 0.25);
+}
+
+
+.new-chat-button span:first-child {
+
+    font-size: 1.3rem;
+
+    color: var(--cyan);
+}
+
+
+/* Conversations */
+
+.conversation-section {
+
+    margin-top: 30px;
+
+    flex: 1;
+
+    overflow-y: auto;
+}
+
+
+.section-title {
+
+    color: #596477;
+
+    font-size: 0.65rem;
+
+    letter-spacing:
+        0.15em;
+
+    margin-bottom: 10px;
+}
+
+
+.sidebar-bottom {
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 0.7rem;
+}
+
+
+.status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 5px;
+
+    color: #cbd5e1;
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #20e78b;
+
+    box-shadow:
+        0 0 10px
+        rgba(32, 231, 139, 0.7);
+}
+
+
+/* =========================================
+   CHAT AREA
+   ========================================= */
+
+.chat-area {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* Header */
+
+.chat-header {
+
+    height: 68px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 25px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(5, 7, 13, 0.85);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+
+.chat-header h2 {
+
+    font-size: 0.95rem;
+
+    letter-spacing:
+        0.12em;
+}
+
+
+.chat-header p {
+
+    color: var(--muted);
+
+    font-size: 0.7rem;
+
+    margin-top: 3px;
+}
+
+
+.header-status {
+
+    margin-left: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #8490a3;
+
+    font-size: 0.7rem;
+}
+
+
+.mobile-menu {
+
+    display: none;
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 1.4rem;
+
+    margin-right: 15px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   MESSAGES
+   ========================================= */
+
+.messages {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 35px 25px;
+
+    scroll-behavior: smooth;
+}
+
+
+.welcome-message {
+
+    min-height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+.welcome-logo {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    font-size: 35px;
+
+    color: var(--cyan);
+
+    background:
+        rgba(0, 229, 255, 0.06);
+
+    border:
+        1px solid
+        rgba(0, 229, 255, 0.25);
+
+    box-shadow:
+        var(--glow);
+
+    margin-bottom: 25px;
+}
+
+
+.welcome-message h1 {
+
+    font-size:
+        clamp(
+            1.8rem,
+            4vw,
+            2.7rem
+        );
+
+    font-weight: 600;
+}
+
+
+.welcome-message > p {
+
+    color: var(--muted);
+
+    margin-top: 10px;
+
+    font-size: 0.9rem;
+}
+
+
+/* Suggestions */
+
+.suggestions {
+
+    width: min(
+        650px,
+        100%
+    );
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+
+.suggestion {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    text-align: left;
+
+    padding: 17px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        0.25s ease;
+}
+
+
+.suggestion:hover {
+
+    border-color:
+        rgba(0, 229, 255, 0.25);
+
+    background:
+        rgba(0, 229, 255, 0.045);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.suggestion > span {
+
+    font-size: 1.2rem;
+}
+
+
+.suggestion strong {
+
+    display: block;
+
+    font-size: 0.82rem;
+
+    font-weight: 500;
+}
+
+
+.suggestion small {
+
+    display: block;
+
+    color: var(--muted);
+
+    margin-top: 5px;
+
+    font-size: 0.68rem;
+}
+
+
+/* =========================================
+   INPUT
+   ========================================= */
+
+.input-area {
+
+    padding:
+        15px 25px 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    background:
+        rgba(5, 7, 13, 0.92);
+}
+
+
+.input-box {
+
+    max-width: 850px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 10px;
+
+    padding: 8px 10px 8px 16px;
+
+    border:
+        1px solid
+        rgba(120, 150, 190, 0.2);
+
+    border-radius: 17px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    transition:
+        0.25s;
+}
+
+
+.input-box:focus-within {
+
+    border-color:
+        rgba(0, 229, 255, 0.35);
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 229, 255, 0.05);
+}
+
+
+#messageInput {
+
+    flex: 1;
+
+    resize: none;
+
+    max-height: 150px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+
+    padding: 8px 0;
+}
+
+
+#messageInput::placeholder {
+
+    color: #596477;
+}
+
+
+#sendButton {
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.2rem;
+
+    color: #02050a;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00e5ff,
+            #5680ff
+        );
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+#sendButton:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 229, 255, 0.3);
+}
+
+
+#sendButton:disabled {
+
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+.disclaimer {
+
+    text-align: center;
+
+    color: #4d586a;
+
+    font-size: 0.62rem;
+
+    margin-top: 9px;
+}
+
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+* {
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #273143
+        transparent;
+}
+
+
+::-webkit-scrollbar {
+
+    width: 7px;
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: #273143;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+
+        position: fixed;
+
+        left: 0;
+        top: 0;
+
+        z-index: 100;
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform 0.3s ease;
+
+        box-shadow:
+            20px 0 50px
+            rgba(0, 0, 0, 0.4);
+    }
+
+
+    .sidebar.open {
+
+        transform:
+            translateX(0);
+    }
+
+
+    .mobile-menu {
+
+        display: block;
+    }
+
+
+    .suggestions {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .messages {
+
+        padding:
+            25px 15px;
+    }
+
+
+    .input-area {
+
+        padding:
+            12px 12px 15px;
+    }
+
+
+    .header-status {
+
+        display: none;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .quantum-logo {
+
+        transform:
+            scale(0.8);
+    }
+
+
+    .qubot-title {
+
+        font-size: 3rem;
+    }
+
+
+    .qubot-subtitle {
+
+        font-size: 0.55rem;
+    }
+
+
+    .developers {
+
+        margin-top: 25px;
+    }
+
+
+    .developers p {
+
+        font-size: 0.62rem;
+    }
+
+
+    .enter-button {
+
+        margin-top: 28px;
+    }
+}
+/* =========================================
+   SVG LOGO
+   ========================================= */
+
+.main-logo {
+    width: 170px;
+    height: 170px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(0, 229, 255, 0.35)
+        );
+
+    animation:
+        logoFloat 4s
+        ease-in-out
+        infinite;
+}
+
+
+.mini-logo img {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+}
+
+
+.welcome-logo img {
+    width: 52px;
+    height: 52px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(0, 229, 255, 0.4)
+        );
+}
+
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            scale(1.03);
+    }
+}
