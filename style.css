@@ -1,49 +1,40 @@
-/* =========================================
-   QUBOT
-   Quantum AI Assistant
-   ========================================= */
-
-
-/* =========================================
-   GLOBAL
-   ========================================= */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 :root {
+
     --bg: #05070d;
-    --bg-light: #0a0f1c;
+    --panel: #080c15;
 
-    --panel: rgba(10, 15, 28, 0.88);
-
-    --border: rgba(120, 150, 190, 0.15);
+    --border: rgba(120, 150, 190, 0.16);
 
     --text: #f5f7ff;
-    --muted: #8b95a7;
+    --muted: #8792a6;
 
     --cyan: #00e5ff;
     --blue: #386bff;
     --purple: #8b5cf6;
 
-    --glow:
-        0 0 20px rgba(0, 229, 255, 0.25),
-        0 0 50px rgba(56, 107, 255, 0.15);
 }
+
 
 html,
 body {
+
     width: 100%;
     height: 100%;
+
 }
 
+
 body {
+
     font-family:
         Inter,
-        ui-sans-serif,
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
@@ -55,20 +46,23 @@ body {
     color: var(--text);
 
     overflow: hidden;
+
 }
 
 
 /* =========================================
-   SCREEN
+   INTRO
    ========================================= */
 
 .screen {
+
     width: 100%;
     height: 100vh;
 
     position: relative;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
@@ -77,17 +71,21 @@ body {
     overflow: hidden;
 
     background:
+
         radial-gradient(
             circle at center,
-            rgba(56, 107, 255, 0.10),
-            transparent 35%
+            rgba(56,107,255,.12),
+            transparent 38%
         ),
+
         radial-gradient(
-            circle at 30% 70%,
-            rgba(139, 92, 246, 0.08),
+            circle at 20% 80%,
+            rgba(139,92,246,.08),
             transparent 30%
         ),
+
         #05070d;
+
 }
 
 
@@ -96,44 +94,18 @@ body {
    ========================================= */
 
 .quantum-bg {
+
     position: absolute;
 
     inset: 0;
 
-    overflow: hidden;
-
     pointer-events: none;
+
 }
 
-.quantum-bg::before {
-    content: "";
-
-    position: absolute;
-
-    width: 700px;
-    height: 700px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(0, 229, 255, 0.07),
-            transparent 65%
-        );
-
-    filter: blur(10px);
-}
-
-
-/* Particles */
 
 .quantum-bg span {
+
     position: absolute;
 
     width: 4px;
@@ -145,40 +117,48 @@ body {
 
     box-shadow:
         0 0 10px var(--cyan),
-        0 0 20px rgba(0, 229, 255, 0.5);
+        0 0 25px var(--cyan);
 
-    animation: particleFloat 8s infinite ease-in-out;
+    animation:
+        particle 7s
+        infinite ease-in-out;
+
 }
+
 
 .quantum-bg span:nth-child(1) {
-    left: 12%;
-    top: 25%;
-    animation-delay: 0s;
+    left: 10%;
+    top: 20%;
 }
 
+
 .quantum-bg span:nth-child(2) {
-    left: 82%;
-    top: 20%;
+    left: 80%;
+    top: 18%;
     animation-delay: 1s;
 }
 
+
 .quantum-bg span:nth-child(3) {
-    left: 25%;
+    left: 20%;
     top: 75%;
     animation-delay: 2s;
 }
 
+
 .quantum-bg span:nth-child(4) {
-    left: 75%;
+    left: 78%;
     top: 70%;
     animation-delay: 3s;
 }
 
+
 .quantum-bg span:nth-child(5) {
     left: 50%;
-    top: 12%;
+    top: 10%;
     animation-delay: 4s;
 }
+
 
 .quantum-bg span:nth-child(6) {
     left: 90%;
@@ -187,222 +167,98 @@ body {
 }
 
 
-@keyframes particleFloat {
+@keyframes particle {
 
     0%,
     100% {
-        transform: translate(0, 0);
-        opacity: 0.3;
+        transform: translate(0,0);
+        opacity: .25;
     }
 
     50% {
-        transform: translate(
-            20px,
-            -30px
-        );
-
+        transform: translate(20px,-30px);
         opacity: 1;
     }
+
 }
 
 
 /* =========================================
-   QUANTUM LOGO
+   LOGO
    ========================================= */
 
 .quantum-logo {
-    position: relative;
 
-    width: 170px;
-    height: 170px;
+    width: 180px;
+    height: 180px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 25px;
+    margin-bottom: 15px;
+
 }
 
 
-.quantum-core {
-    width: 72px;
-    height: 72px;
+.main-logo {
 
-    display: flex;
+    width: 180px;
+    height: 180px;
 
-    align-items: center;
-    justify-content: center;
+    object-fit: contain;
 
-    border-radius: 50%;
-
-    font-size: 42px;
-
-    color: #ffffff;
-
-    background:
-        radial-gradient(
-            circle,
-            #ffffff 0%,
-            #00e5ff 35%,
-            #386bff 70%,
-            #151a36 100%
+    filter:
+        drop-shadow(
+            0 0 25px
+            rgba(0,229,255,.45)
         );
 
-    box-shadow:
-        0 0 20px #00e5ff,
-        0 0 60px rgba(0, 229, 255, 0.5),
-        0 0 100px rgba(56, 107, 255, 0.3);
+    animation:
+        logoFloat 4s
+        ease-in-out
+        infinite;
 
-    z-index: 5;
-
-    animation: corePulse 3s infinite ease-in-out;
 }
 
 
-@keyframes corePulse {
+@keyframes logoFloat {
 
     0%,
     100% {
-        transform: scale(1);
+        transform: translateY(0);
     }
 
     50% {
-        transform: scale(1.08);
-    }
-}
-
-
-/* Orbit */
-
-.orbital {
-    position: absolute;
-
-    width: 155px;
-    height: 55px;
-
-    border: 1px solid rgba(
-        0,
-        229,
-        255,
-        0.7
-    );
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 15px rgba(
-            0,
-            229,
-            255,
-            0.2
-        );
-}
-
-
-.orbital-one {
-    transform: rotate(25deg);
-
-    animation:
-        orbitOne 5s
-        linear infinite;
-}
-
-
-.orbital-two {
-    transform: rotate(-25deg);
-
-    border-color:
-        rgba(139, 92, 246, 0.65);
-
-    animation:
-        orbitTwo 6s
-        linear infinite;
-}
-
-
-.orbital-three {
-    transform: rotate(90deg);
-
-    border-color:
-        rgba(56, 107, 255, 0.65);
-
-    animation:
-        orbitThree 7s
-        linear infinite;
-}
-
-
-@keyframes orbitOne {
-
-    from {
-        transform:
-            rotate(25deg);
+        transform: translateY(-8px);
     }
 
-    to {
-        transform:
-            rotate(385deg);
-    }
-}
-
-
-@keyframes orbitTwo {
-
-    from {
-        transform:
-            rotate(-25deg);
-    }
-
-    to {
-        transform:
-            rotate(-385deg);
-    }
-}
-
-
-@keyframes orbitThree {
-
-    from {
-        transform:
-            rotate(90deg);
-    }
-
-    to {
-        transform:
-            rotate(450deg);
-    }
 }
 
 
 /* =========================================
-   QUBOT TITLE
+   TITLE
    ========================================= */
 
 .qubot-title {
-    position: relative;
 
     font-size:
-        clamp(
-            3.5rem,
-            9vw,
-            7rem
-        );
+        clamp(3.5rem,9vw,7rem);
 
     font-weight: 800;
 
-    letter-spacing:
-        0.18em;
+    letter-spacing: .18em;
 
-    margin-left: 0.18em;
+    margin-left: .18em;
 
     background:
         linear-gradient(
             90deg,
-            #ffffff,
+            #fff,
             #00e5ff,
             #8b5cf6,
-            #ffffff
+            #fff
         );
 
     background-size: 300% auto;
@@ -413,42 +269,39 @@ body {
     color: transparent;
 
     animation:
-        titleGradient 6s
+        gradient 6s
         linear infinite;
 
-    text-shadow:
-        0 0 40px
-        rgba(0, 229, 255, 0.15);
 }
 
 
-@keyframes titleGradient {
+@keyframes gradient {
 
     0% {
-        background-position: 0% center;
+        background-position: 0%;
     }
 
     50% {
-        background-position: 100% center;
+        background-position: 100%;
     }
 
     100% {
-        background-position: 0% center;
+        background-position: 0%;
     }
+
 }
 
 
 .qubot-subtitle {
-    margin-top: 4px;
 
     color: var(--muted);
 
-    font-size: 0.75rem;
+    font-size: .72rem;
 
-    letter-spacing:
-        0.45em;
+    letter-spacing: .45em;
 
-    margin-left: 0.45em;
+    margin-left: .45em;
+
 }
 
 
@@ -457,50 +310,50 @@ body {
    ========================================= */
 
 .developers {
-    margin-top: 35px;
+
+    margin-top: 30px;
 
     text-align: center;
 
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
 }
 
 
 .developers p {
-    font-size: 0.75rem;
 
-    color: #687386;
+    margin: 8px 0;
 
-    letter-spacing:
-        0.12em;
+    color: #697386;
+
+    font-size: .72rem;
+
+    letter-spacing: .1em;
+
 }
 
 
 .developers span {
+
     margin-right: 7px;
 
-    color: #596477;
 }
 
 
 .developers strong {
+
     color: #dce5f4;
 
     font-weight: 500;
+
 }
 
 
 /* =========================================
-   ENTER BUTTON
+   ENTER
    ========================================= */
 
 .enter-button {
-    position: relative;
 
-    margin-top: 35px;
+    margin-top: 30px;
 
     padding: 14px 25px;
 
@@ -510,69 +363,55 @@ body {
 
     gap: 18px;
 
-    border: 1px solid
-        rgba(0, 229, 255, 0.45);
-
     border-radius: 999px;
+
+    border:
+        1px solid
+        rgba(0,229,255,.45);
+
+    background:
+        rgba(0,229,255,.06);
 
     color: white;
 
-    background:
-        rgba(0, 229, 255, 0.06);
-
     cursor: pointer;
 
-    font-size: 0.78rem;
+    letter-spacing: .18em;
 
-    letter-spacing:
-        0.2em;
+    transition: .3s;
 
-    transition:
-        0.3s ease;
-
-    box-shadow:
-        0 0 25px
-        rgba(0, 229, 255, 0.08);
 }
 
 
 .enter-button:hover {
 
     background:
-        rgba(0, 229, 255, 0.12);
+        rgba(0,229,255,.13);
 
     border-color:
         var(--cyan);
 
     box-shadow:
-        0 0 25px
-        rgba(0, 229, 255, 0.3);
+        0 0 30px
+        rgba(0,229,255,.25);
 
     transform:
         translateY(-2px);
+
 }
 
 
 .enter-button .arrow {
 
-    font-size: 1.2rem;
-
     color: var(--cyan);
 
-    transition:
-        transform 0.3s ease;
-}
+    font-size: 1.2rem;
 
-
-.enter-button:hover .arrow {
-
-    transform:
-        translateX(5px);
 }
 
 
 /* =========================================
-   CHAT SCREEN
+   CHAT
    ========================================= */
 
 .chat-screen {
@@ -583,11 +422,14 @@ body {
     display: flex;
 
     background: var(--bg);
+
 }
 
 
 .chat-screen.hidden {
+
     display: none;
+
 }
 
 
@@ -610,10 +452,11 @@ body {
     padding: 20px;
 
     background:
-        rgba(7, 10, 18, 0.95);
+        rgba(7,10,18,.97);
 
     border-right:
         1px solid var(--border);
+
 }
 
 
@@ -626,6 +469,7 @@ body {
     gap: 12px;
 
     margin-bottom: 25px;
+
 }
 
 
@@ -634,27 +478,14 @@ body {
     width: 42px;
     height: 42px;
 
-    display: flex;
+}
 
-    align-items: center;
-    justify-content: center;
 
-    border-radius: 12px;
+.mini-logo img {
 
-    color: var(--cyan);
+    width: 42px;
+    height: 42px;
 
-    background:
-        rgba(0, 229, 255, 0.08);
-
-    border:
-        1px solid
-        rgba(0, 229, 255, 0.25);
-
-    box-shadow:
-        0 0 20px
-        rgba(0, 229, 255, 0.08);
-
-    font-size: 23px;
 }
 
 
@@ -662,8 +493,8 @@ body {
 
     font-size: 1.1rem;
 
-    letter-spacing:
-        0.12em;
+    letter-spacing: .12em;
+
 }
 
 
@@ -671,13 +502,10 @@ body {
 
     color: var(--muted);
 
-    font-size: 0.68rem;
+    font-size: .68rem;
 
-    margin-top: 2px;
 }
 
-
-/* New chat */
 
 .new-chat-button {
 
@@ -687,9 +515,9 @@ body {
 
     display: flex;
 
-    align-items: center;
-
     gap: 10px;
+
+    align-items: center;
 
     border-radius: 10px;
 
@@ -697,35 +525,31 @@ body {
         1px solid var(--border);
 
     background:
-        rgba(255, 255, 255, 0.025);
+        rgba(255,255,255,.025);
 
-    color: #e8edf7;
+    color: white;
 
     cursor: pointer;
 
-    transition: 0.25s;
 }
 
 
 .new-chat-button:hover {
 
     background:
-        rgba(0, 229, 255, 0.06);
+        rgba(0,229,255,.07);
 
-    border-color:
-        rgba(0, 229, 255, 0.25);
 }
 
 
 .new-chat-button span:first-child {
 
+    color: var(--cyan);
+
     font-size: 1.3rem;
 
-    color: var(--cyan);
 }
 
-
-/* Conversations */
 
 .conversation-section {
 
@@ -734,6 +558,7 @@ body {
     flex: 1;
 
     overflow-y: auto;
+
 }
 
 
@@ -741,12 +566,12 @@ body {
 
     color: #596477;
 
-    font-size: 0.65rem;
+    font-size: .65rem;
 
-    letter-spacing:
-        0.15em;
+    letter-spacing: .15em;
 
     margin-bottom: 10px;
+
 }
 
 
@@ -759,7 +584,8 @@ body {
 
     color: var(--muted);
 
-    font-size: 0.7rem;
+    font-size: .7rem;
+
 }
 
 
@@ -774,6 +600,7 @@ body {
     margin-bottom: 5px;
 
     color: #cbd5e1;
+
 }
 
 
@@ -788,7 +615,8 @@ body {
 
     box-shadow:
         0 0 10px
-        rgba(32, 231, 139, 0.7);
+        rgba(32,231,139,.7);
+
 }
 
 
@@ -807,10 +635,9 @@ body {
     display: flex;
 
     flex-direction: column;
+
 }
 
-
-/* Header */
 
 .chat-header {
 
@@ -828,19 +655,17 @@ body {
         1px solid var(--border);
 
     background:
-        rgba(5, 7, 13, 0.85);
+        rgba(5,7,13,.9);
 
-    backdrop-filter:
-        blur(12px);
 }
 
 
 .chat-header h2 {
 
-    font-size: 0.95rem;
+    font-size: .95rem;
 
-    letter-spacing:
-        0.12em;
+    letter-spacing: .12em;
+
 }
 
 
@@ -848,9 +673,8 @@ body {
 
     color: var(--muted);
 
-    font-size: 0.7rem;
+    font-size: .7rem;
 
-    margin-top: 3px;
 }
 
 
@@ -864,9 +688,10 @@ body {
 
     gap: 7px;
 
-    color: #8490a3;
+    color: var(--muted);
 
-    font-size: 0.7rem;
+    font-size: .7rem;
+
 }
 
 
@@ -874,17 +699,16 @@ body {
 
     display: none;
 
-    background: none;
+    margin-right: 15px;
 
     border: none;
+
+    background: none;
 
     color: white;
 
     font-size: 1.4rem;
 
-    margin-right: 15px;
-
-    cursor: pointer;
 }
 
 
@@ -898,9 +722,8 @@ body {
 
     overflow-y: auto;
 
-    padding: 35px 25px;
+    padding: 30px 25px;
 
-    scroll-behavior: smooth;
 }
 
 
@@ -917,79 +740,68 @@ body {
     justify-content: center;
 
     text-align: center;
+
 }
 
 
 .welcome-logo {
 
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
 
-    display: flex;
+    margin-bottom: 20px;
 
-    align-items: center;
-    justify-content: center;
+}
 
-    border-radius: 22px;
 
-    font-size: 35px;
+.welcome-logo img {
 
-    color: var(--cyan);
+    width: 75px;
+    height: 75px;
 
-    background:
-        rgba(0, 229, 255, 0.06);
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(0,229,255,.35)
+        );
 
-    border:
-        1px solid
-        rgba(0, 229, 255, 0.25);
-
-    box-shadow:
-        var(--glow);
-
-    margin-bottom: 25px;
 }
 
 
 .welcome-message h1 {
 
     font-size:
-        clamp(
-            1.8rem,
-            4vw,
-            2.7rem
-        );
+        clamp(1.8rem,4vw,2.7rem);
 
     font-weight: 600;
+
 }
 
 
 .welcome-message > p {
 
-    color: var(--muted);
-
     margin-top: 10px;
 
-    font-size: 0.9rem;
+    color: var(--muted);
+
+    font-size: .9rem;
+
 }
 
 
-/* Suggestions */
-
 .suggestions {
 
-    width: min(
-        650px,
-        100%
-    );
+    width: min(650px,100%);
 
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
     gap: 12px;
 
     margin-top: 35px;
+
 }
 
 
@@ -997,47 +809,35 @@ body {
 
     display: flex;
 
-    align-items: flex-start;
-
     gap: 12px;
 
     text-align: left;
 
     padding: 17px;
 
+    border-radius: 14px;
+
     border:
         1px solid var(--border);
 
-    border-radius: 14px;
-
     background:
-        rgba(255, 255, 255, 0.025);
+        rgba(255,255,255,.025);
 
     color: white;
 
     cursor: pointer;
 
-    transition:
-        0.25s ease;
 }
 
 
 .suggestion:hover {
 
     border-color:
-        rgba(0, 229, 255, 0.25);
+        rgba(0,229,255,.3);
 
     background:
-        rgba(0, 229, 255, 0.045);
+        rgba(0,229,255,.05);
 
-    transform:
-        translateY(-2px);
-}
-
-
-.suggestion > span {
-
-    font-size: 1.2rem;
 }
 
 
@@ -1045,9 +845,10 @@ body {
 
     display: block;
 
-    font-size: 0.82rem;
+    font-size: .82rem;
 
     font-weight: 500;
+
 }
 
 
@@ -1059,7 +860,8 @@ body {
 
     margin-top: 5px;
 
-    font-size: 0.68rem;
+    font-size: .68rem;
+
 }
 
 
@@ -1075,8 +877,6 @@ body {
     border-top:
         1px solid var(--border);
 
-    background:
-        rgba(5, 7, 13, 0.92);
 }
 
 
@@ -1092,30 +892,18 @@ body {
 
     gap: 10px;
 
-    padding: 8px 10px 8px 16px;
+    padding:
+        8px 10px 8px 16px;
 
     border:
         1px solid
-        rgba(120, 150, 190, 0.2);
+        rgba(120,150,190,.2);
 
     border-radius: 17px;
 
     background:
-        rgba(255, 255, 255, 0.04);
+        rgba(255,255,255,.04);
 
-    transition:
-        0.25s;
-}
-
-
-.input-box:focus-within {
-
-    border-color:
-        rgba(0, 229, 255, 0.35);
-
-    box-shadow:
-        0 0 25px
-        rgba(0, 229, 255, 0.05);
 }
 
 
@@ -1137,17 +925,17 @@ body {
 
     font-family: inherit;
 
-    font-size: 0.9rem;
+    font-size: .9rem;
 
     line-height: 1.5;
 
-    padding: 8px 0;
 }
 
 
 #messageInput::placeholder {
 
     color: #596477;
+
 }
 
 
@@ -1156,20 +944,9 @@ body {
     width: 38px;
     height: 38px;
 
-    flex-shrink: 0;
-
     border: none;
 
     border-radius: 11px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 1.2rem;
-
-    color: #02050a;
 
     background:
         linear-gradient(
@@ -1178,32 +955,12 @@ body {
             #5680ff
         );
 
+    color: #02050a;
+
+    font-size: 1.2rem;
+
     cursor: pointer;
 
-    transition: 0.25s;
-}
-
-
-#sendButton:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 0 20px
-        rgba(0, 229, 255, 0.3);
-}
-
-
-#sendButton:disabled {
-
-    opacity: 0.35;
-
-    cursor: not-allowed;
-
-    transform: none;
-
-    box-shadow: none;
 }
 
 
@@ -1213,9 +970,10 @@ body {
 
     color: #4d586a;
 
-    font-size: 0.62rem;
+    font-size: .62rem;
 
     margin-top: 9px;
+
 }
 
 
@@ -1230,18 +988,14 @@ body {
     scrollbar-color:
         #273143
         transparent;
+
 }
 
 
 ::-webkit-scrollbar {
 
     width: 7px;
-}
 
-
-::-webkit-scrollbar-track {
-
-    background: transparent;
 }
 
 
@@ -1250,6 +1004,7 @@ body {
     background: #273143;
 
     border-radius: 10px;
+
 }
 
 
@@ -1272,11 +1027,8 @@ body {
             translateX(-100%);
 
         transition:
-            transform 0.3s ease;
+            transform .3s;
 
-        box-shadow:
-            20px 0 50px
-            rgba(0, 0, 0, 0.4);
     }
 
 
@@ -1284,40 +1036,46 @@ body {
 
         transform:
             translateX(0);
+
     }
 
 
     .mobile-menu {
 
         display: block;
-    }
 
-
-    .suggestions {
-
-        grid-template-columns:
-            1fr;
-    }
-
-
-    .messages {
-
-        padding:
-            25px 15px;
-    }
-
-
-    .input-area {
-
-        padding:
-            12px 12px 15px;
     }
 
 
     .header-status {
 
         display: none;
+
     }
+
+
+    .suggestions {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .messages {
+
+        padding:
+            20px 15px;
+
+    }
+
+
+    .input-area {
+
+        padding:
+            12px;
+
+    }
+
 }
 
 
@@ -1326,96 +1084,22 @@ body {
     .quantum-logo {
 
         transform:
-            scale(0.8);
+            scale(.8);
+
     }
 
 
     .qubot-title {
 
         font-size: 3rem;
-    }
 
-
-    .qubot-subtitle {
-
-        font-size: 0.55rem;
-    }
-
-
-    .developers {
-
-        margin-top: 25px;
     }
 
 
     .developers p {
 
-        font-size: 0.62rem;
+        font-size: .62rem;
+
     }
 
-
-    .enter-button {
-
-        margin-top: 28px;
-    }
-}
-/* =========================================
-   SVG LOGO
-   ========================================= */
-
-.main-logo {
-    width: 170px;
-    height: 170px;
-
-    object-fit: contain;
-
-    filter:
-        drop-shadow(
-            0 0 18px
-            rgba(0, 229, 255, 0.35)
-        );
-
-    animation:
-        logoFloat 4s
-        ease-in-out
-        infinite;
-}
-
-
-.mini-logo img {
-    width: 34px;
-    height: 34px;
-
-    object-fit: contain;
-}
-
-
-.welcome-logo img {
-    width: 52px;
-    height: 52px;
-
-    object-fit: contain;
-
-    filter:
-        drop-shadow(
-            0 0 12px
-            rgba(0, 229, 255, 0.4)
-        );
-}
-
-
-@keyframes logoFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-    50% {
-        transform:
-            translateY(-7px)
-            scale(1.03);
-    }
 }
