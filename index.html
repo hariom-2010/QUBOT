@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -10,27 +11,20 @@
     >
 
     <meta
+        name="theme-color"
+        content="#05070d"
+    >
+
+    <meta
         name="description"
-        content="QUBOT — Quantum AI Assistant"
+        content="QUBOT - Quantum AI Assistant"
     >
 
     <title>QUBOT — Quantum AI</title>
 
-
-    <!-- =========================================
-         TAILWIND CSS
-         ========================================= -->
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-
-    <!-- =========================================
-         QUBOT CUSTOM CSS
-         ========================================= -->
-
     <link
         rel="stylesheet"
-        href="/style.css"
+        href="style.css"
     >
 
 </head>
@@ -39,17 +33,14 @@
 <body>
 
 
-    <!-- =========================================
-         INTRO / WELCOME SCREEN
-         ========================================= -->
+    <!-- ======================================
+         INTRO SCREEN
+         ====================================== -->
 
     <section
         id="introScreen"
         class="screen"
     >
-
-
-        <!-- Quantum Background -->
 
         <div
             class="quantum-bg"
@@ -66,17 +57,12 @@
         </div>
 
 
+        <!-- QUANTUM LOGO -->
 
-        <!-- =====================================
-             QUBOT QUANTUM LOGO
-             ===================================== -->
-
-        <div
-            class="quantum-logo"
-        >
+        <div class="quantum-logo">
 
             <img
-                src="/assets/logo.svg"
+                src="assets/logo.svg"
                 alt="QUBOT Quantum Logo"
                 class="main-logo"
             >
@@ -84,66 +70,36 @@
         </div>
 
 
+        <!-- TITLE -->
 
-        <!-- =====================================
-             QUBOT TITLE
-             ===================================== -->
-
-        <h1
-            class="qubot-title"
-        >
+        <h1 class="qubot-title">
             QUBOT
         </h1>
 
 
-        <p
-            class="qubot-subtitle"
-        >
+        <p class="qubot-subtitle">
             QUANTUM AI ASSISTANT
         </p>
 
 
+        <!-- DEVELOPERS -->
 
-        <!-- =====================================
-             DEVELOPER INFORMATION
-             ===================================== -->
-
-        <div
-            class="developers"
-        >
+        <div class="developers">
 
             <p>
-
-                <span>
-                    DEVELOPER
-                </span>
-
-                <strong>
-                    HARIOM NARAYAN
-                </strong>
-
+                <span>DEVELOPER</span>
+                <strong>HARIOM NARAYAN</strong>
             </p>
 
-
             <p>
-
-                <span>
-                    CO-DEVELOPER
-                </span>
-
-                <strong>
-                    ADARSH NARAYAN
-                </strong>
-
+                <span>CO-DEVELOPER</span>
+                <strong>ADARSH NARAYAN</strong>
             </p>
 
         </div>
 
 
-
-        <!-- =====================================
-             ENTER QUBOT BUTTON
-             ===================================== -->
+        <!-- ENTER -->
 
         <button
             id="enterButton"
@@ -155,23 +111,19 @@
                 ENTER QUBOT
             </span>
 
-            <span
-                class="arrow"
-                aria-hidden="true"
-            >
+            <span class="arrow">
                 →
             </span>
 
         </button>
 
-
     </section>
 
 
 
-    <!-- =========================================
-         MAIN CHAT APPLICATION
-         ========================================= -->
+    <!-- ======================================
+         CHAT SCREEN
+         ====================================== -->
 
     <section
         id="chatScreen"
@@ -179,29 +131,21 @@
     >
 
 
-
-        <!-- =====================================
+        <!-- ==================================
              SIDEBAR
-             ===================================== -->
+             ================================== -->
 
         <aside
             id="sidebar"
             class="sidebar"
         >
 
+            <div class="sidebar-logo">
 
-            <!-- Sidebar Logo -->
-
-            <div
-                class="sidebar-logo"
-            >
-
-                <div
-                    class="mini-logo"
-                >
+                <div class="mini-logo">
 
                     <img
-                        src="/assets/logo.svg"
+                        src="assets/logo.svg"
                         alt="QUBOT"
                     >
 
@@ -223,18 +167,13 @@
             </div>
 
 
-
-            <!-- New Chat Button -->
-
             <button
                 id="newChatButton"
                 class="new-chat-button"
                 type="button"
             >
 
-                <span>
-                    ＋
-                </span>
+                <span>＋</span>
 
                 <span>
                     New Chat
@@ -243,49 +182,24 @@
             </button>
 
 
+            <div class="conversation-section">
 
-            <!-- =================================
-                 CONVERSATIONS
-                 ================================= -->
-
-            <div
-                class="conversation-section"
-            >
-
-                <p
-                    class="section-title"
-                >
+                <p class="section-title">
                     CONVERSATIONS
                 </p>
 
-
                 <div
                     id="conversationList"
-                >
-
-                    <!-- Conversations appear here -->
-
-                </div>
+                ></div>
 
             </div>
 
 
+            <div class="sidebar-bottom">
 
-            <!-- =================================
-                 SIDEBAR BOTTOM
-                 ================================= -->
+                <div class="status">
 
-            <div
-                class="sidebar-bottom"
-            >
-
-                <div
-                    class="status"
-                >
-
-                    <span
-                        class="status-dot"
-                    ></span>
+                    <span class="status-dot"></span>
 
                     <span>
                         QUBOT Online
@@ -293,51 +207,33 @@
 
                 </div>
 
-
                 <p>
                     Quantum AI Assistant
                 </p>
 
             </div>
 
-
         </aside>
 
 
 
-        <!-- =====================================
-             MAIN CHAT AREA
-             ===================================== -->
+        <!-- ==================================
+             CHAT AREA
+             ================================== -->
 
-        <main
-            class="chat-area"
-        >
+        <main class="chat-area">
 
 
-
-            <!-- =================================
-                 CHAT HEADER
-                 ================================= -->
-
-            <header
-                class="chat-header"
-            >
-
-
-                <!-- Mobile Menu -->
+            <header class="chat-header">
 
                 <button
                     id="mobileMenuButton"
                     class="mobile-menu"
                     type="button"
-                    aria-label="Open menu"
                 >
                     ☰
                 </button>
 
-
-
-                <!-- Header Information -->
 
                 <div>
 
@@ -352,16 +248,9 @@
                 </div>
 
 
+                <div class="header-status">
 
-                <!-- Online Status -->
-
-                <div
-                    class="header-status"
-                >
-
-                    <span
-                        class="status-dot"
-                    ></span>
+                    <span class="status-dot"></span>
 
                     <span>
                         Online
@@ -369,47 +258,33 @@
 
                 </div>
 
-
             </header>
 
 
 
-            <!-- =================================
+            <!-- ==================================
                  MESSAGES
-                 ================================= -->
+                 ================================== -->
 
             <div
                 id="messages"
                 class="messages"
             >
 
-
-                <!-- =================================
-                     WELCOME MESSAGE
-                     ================================= -->
-
                 <div
                     id="welcomeMessage"
                     class="welcome-message"
                 >
 
-
-                    <!-- Logo -->
-
-                    <div
-                        class="welcome-logo"
-                    >
+                    <div class="welcome-logo">
 
                         <img
-                            src="/assets/logo.svg"
+                            src="assets/logo.svg"
                             alt="QUBOT"
                         >
 
                     </div>
 
-
-
-                    <!-- Welcome Text -->
 
                     <h1>
                         How can I help you?
@@ -417,31 +292,19 @@
 
 
                     <p>
-                        Welcome to QUBOT.
-                        Ask me anything.
+                        Welcome to QUBOT. Ask me anything.
                     </p>
 
 
+                    <div class="suggestions">
 
-                    <!-- =================================
-                         SUGGESTION CARDS
-                         ================================= -->
-
-                    <div
-                        class="suggestions"
-                    >
-
-
-                        <!-- Suggestion 1 -->
 
                         <button
                             class="suggestion"
                             type="button"
                         >
 
-                            <span>
-                                💡
-                            </span>
+                            <span>💡</span>
 
                             <div>
 
@@ -459,16 +322,12 @@
 
 
 
-                        <!-- Suggestion 2 -->
-
                         <button
                             class="suggestion"
                             type="button"
                         >
 
-                            <span>
-                                💻
-                            </span>
+                            <span>💻</span>
 
                             <div>
 
@@ -486,16 +345,12 @@
 
 
 
-                        <!-- Suggestion 3 -->
-
                         <button
                             class="suggestion"
                             type="button"
                         >
 
-                            <span>
-                                🚀
-                            </span>
+                            <span>🚀</span>
 
                             <div>
 
@@ -513,16 +368,12 @@
 
 
 
-                        <!-- Suggestion 4 -->
-
                         <button
                             class="suggestion"
                             type="button"
                         >
 
-                            <span>
-                                🧠
-                            </span>
+                            <span>🧠</span>
 
                             <div>
 
@@ -541,94 +392,60 @@
 
                     </div>
 
-
                 </div>
-
 
             </div>
 
 
 
-            <!-- =====================================
-                 MESSAGE INPUT AREA
-                 ===================================== -->
+            <!-- ==================================
+                 INPUT
+                 ================================== -->
 
-            <div
-                class="input-area"
-            >
+            <div class="input-area">
 
+                <form id="chatForm">
 
-                <form
-                    id="chatForm"
-                >
-
-
-                    <div
-                        class="input-box"
-                    >
-
-
-                        <!-- Message Input -->
+                    <div class="input-box">
 
                         <textarea
                             id="messageInput"
                             rows="1"
                             placeholder="Message QUBOT..."
                             autocomplete="off"
-                            aria-label="Message QUBOT"
                         ></textarea>
 
-
-
-                        <!-- Send Button -->
 
                         <button
                             id="sendButton"
                             type="submit"
-                            title="Send message"
-                            aria-label="Send message"
                         >
-
                             ↑
-
                         </button>
 
-
                     </div>
-
 
                 </form>
 
 
-
-                <!-- Disclaimer -->
-
-                <p
-                    class="disclaimer"
-                >
+                <p class="disclaimer">
                     QUBOT can make mistakes.
                     Check important information.
                 </p>
-
 
             </div>
 
 
         </main>
 
-
     </section>
 
 
 
-    <!-- =========================================
-         QUBOT JAVASCRIPT
-         ========================================= -->
+    <!-- JAVASCRIPT -->
 
-    <script
-        src="/app.js"
-    ></script>
-
+    <script src="app.js"></script>
 
 </body>
+
 </html>
