@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from app.gemini import generate_reply
+from app.gemini import generate_reply 
 
 
 # =========================================
