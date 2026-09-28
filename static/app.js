@@ -45,7 +45,7 @@ const suggestionButtons =
     document.querySelectorAll(".suggestion");
 
 const sendButton =
-    document.getElementById("sendButton");
+    document.getElementById("sendButton"); 
 
 
 /* =========================================
