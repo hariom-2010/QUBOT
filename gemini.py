@@ -10,7 +10,7 @@ from google import genai
 
 load_dotenv()
 
-GEMINI_API_KEY = os.getenv("AQ.Ab8RN6KKt8DJM6B3daDqi1IJhPqTPeY-MhMpT50Ql_rA1J2-Xw")
+GEMINI_API_KEY = os.getenv("your-api-key")
 
 
 # =========================================
@@ -21,7 +21,7 @@ client = None
 
 if GEMINI_API_KEY:
     client = genai.Client(
-        api_key=AQ.Ab8RN6KKt8DJM6B3daDqi1IJhPqTPeY-MhMpT50Ql_rA1J2-Xw
+        api_key=your-api-key
     )
 
 
@@ -52,8 +52,7 @@ async def generate_reply(
             "QUBOT is currently running in "
             "demo mode.\n\n"
             f"You said:\n{last_message}\n\n"
-            "Connect a Gemini API key to enable "
-            "real AI responses."
+        
         )
 
 
