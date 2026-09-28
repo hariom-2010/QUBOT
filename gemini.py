@@ -10,7 +10,7 @@ from google import genai
 
 load_dotenv()
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("AQ.Ab8RN6KKt8DJM6B3daDqi1IJhPqTPeY-MhMpT50Ql_rA1J2-Xw")
 
 
 # =========================================
@@ -21,7 +21,7 @@ client = None
 
 if GEMINI_API_KEY:
     client = genai.Client(
-        api_key=GEMINI_API_KEY
+        api_key=AQ.Ab8RN6KKt8DJM6B3daDqi1IJhPqTPeY-MhMpT50Ql_rA1J2-Xw
     )
 
 
