@@ -54,7 +54,7 @@ async def health_check():
         "status": "ok",
         "name": "QUBOT"
     }
-
+ 
 
 # =========================================
 # CHAT
