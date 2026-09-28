@@ -10,7 +10,7 @@
 
 const introScreen =
     document.getElementById("introScreen");
-
+ 
 const chatScreen =
     document.getElementById("chatScreen");
 
